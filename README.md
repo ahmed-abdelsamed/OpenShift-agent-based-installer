@@ -4,6 +4,7 @@
 After create  install-config and agent-config files
 
 $ ./openshift-install agent create image --dir ocp
+
 INFO[0000] Start configuring static network for 3 hosts  pkg=manifests
 INFO[0000] Adding NMConnection file <enp2s0.nmconnection>  pkg=manifests
 INFO[0001] Adding NMConnection file <enp2s0.nmconnection>  pkg=manifests
@@ -21,6 +22,7 @@ Now lets go ahead and start the virtual machines all at the same time from the h
  export KUBECONFIG=/home/bschmaus/installer/kni-22/auth/kubeconfig
 
 $ ./openshift-install agent wait-for install-complete --dir ocp
+
 INFO Waiting for cluster install to initialize. Sleeping for 30 seconds 
 INFO Waiting for cluster install to initialize. Sleeping for 30 seconds 
 INFO Waiting for cluster install to initialize. Sleeping for 30 seconds 
@@ -81,12 +83,14 @@ INFO Access the OpenShift web-console here: https://console-openshift-console.ap
 Once the cluster installation has completed we can run a few commands to validate that indeed the cluster is up and operational:
 
 $ oc get nodes
+
 NAME        STATUS   ROLES           AGE   VERSION
 asus3-vm1   Ready    master,worker   16m   v1.24.0+9546431
 asus3-vm2   Ready    master,worker   30m   v1.24.0+9546431
 asus3-vm3   Ready    master,worker   30m   v1.24.0+9546431
 
 $ oc get co
+
 NAME                                       VERSION       AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
 authentication                             4.11.0        True        False         False      4m38s   
 baremetal                                  4.11.0        True        False         False      28m     
@@ -123,6 +127,7 @@ storage                                    4.11.0        True        False      
 
 --------------------------------------------------
 $ oc patch secret -n kube-system kubeadmin --type json -p '[{"op": "replace", "path": "/data/kubeadmin", "value": "'"$(openssl rand -base64 18 | tee auth/kubeadmin-password | htpasswd -nBi -C 10 "" | cut -d: -f2 | base64 -w 0 -)"'"}]'
+
 secret/kubeadmin patched
 
 $ ls -l auth/kubeadmin-password 
