@@ -137,5 +137,5 @@ $ cat auth/kubeadmin-password
 VdCOu3+DVfE3J2jurERXFxf1
 
 ----------------------------------------------------------
-https://cloud.redhat.com/blog/meet-the-new-agent-based-openshift-installer-1
+https://cloud.redhat.com/blog/meet-the-new-agent-based-openshift-installer-1 
 
